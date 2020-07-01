@@ -11,7 +11,7 @@ module.exports = {
     rules: [
       {
         test: /\.txt$/,
-        use: 'raw-loader'
+        use: 'raw-loader',
       },
       {
         test: /\.js$/,
@@ -40,7 +40,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-            limit: 8192,
+              limit: 8192,
             },
           },
         ],

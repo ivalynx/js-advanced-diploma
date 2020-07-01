@@ -1,10 +1,10 @@
-export function calcTileType(index, boardSize) {
+function calcTileType(index, boardSize) {
   // TODO: write logic here
   let result = '';
   const tileNumber = index + 1;
-  if (index >= 0 && index < 8) {
+  if (index < boardSize) {
     result = 'top';
-  } else if (index >= 56) {
+  } else if (index >= boardSize * (boardSize - 1)) {
     result = 'bottom';
   }
   if (tileNumber % boardSize === 0) {
@@ -27,7 +27,7 @@ export function calcTileType(index, boardSize) {
   return result;
 }
 
-export function calcHealthLevel(health) {
+function calcHealthLevel(health) {
   if (health < 15) {
     return 'critical';
   }
@@ -38,3 +38,5 @@ export function calcHealthLevel(health) {
 
   return 'high';
 }
+
+export { calcTileType, calcHealthLevel };
