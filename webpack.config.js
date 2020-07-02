@@ -5,14 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   output: {
+    filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
-      {
-        test: /\.txt$/,
-        use: 'raw-loader',
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -33,18 +30,13 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, 'css-loader',
         ],
-      },
+      },      
       {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
-      },
+        test: /\.(png|svg|jpg|gif|ico)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]',
+        },
     ],
   },
   plugins: [
