@@ -7,11 +7,9 @@
  */
 export function* characterGenerator(allowedTypes, maxLevel) {
   // TODO: write logic here
-  while (true) {
-    const i = Math.floor(Math.random() * allowedTypes.length);
-    const level = Math.floor(Math.random() * maxLevel);
-    yield new allowedTypes[i](level);
-  }
+  const i = Math.floor(Math.random() * allowedTypes.length);
+  const level = Math.floor(Math.random() * maxLevel);
+  yield new allowedTypes[i](level);
 }
 
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
