@@ -1,5 +1,4 @@
-function calcTileType(index, boardSize) {
-  // TODO: write logic here
+export function calcTileType(index, boardSize) {
   let result = '';
   const tileNumber = index + 1;
   if (index < boardSize) {
@@ -27,7 +26,7 @@ function calcTileType(index, boardSize) {
   return result;
 }
 
-function calcHealthLevel(health) {
+export function calcHealthLevel(health) {
   if (health < 15) {
     return 'critical';
   }
@@ -38,5 +37,3 @@ function calcHealthLevel(health) {
 
   return 'high';
 }
-
-export { calcTileType, calcHealthLevel };
