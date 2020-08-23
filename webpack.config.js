@@ -1,11 +1,9 @@
-
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   output: {
-    filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -30,13 +28,18 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, 'css-loader',
         ],
-      },      
+      },
       {
-        test: /\.(png|svg|jpg|gif|ico)$/,
-        loader: 'file-loader',
-        options: {
-          name: 'img/[name].[ext]',
-        },
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+            limit: 8192,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
