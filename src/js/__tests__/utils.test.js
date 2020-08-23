@@ -1,4 +1,4 @@
-import { calcTileType } from '../utils';
+import { calcTileType, calcHealthLevel } from '../utils';
 
 test('Если размер поля boardSize = 5, то у ячейки 3 должна быть строка top', () => {
   const result = calcTileType(3, 5);
@@ -99,4 +99,17 @@ test('Если размер поля boardSize = 10, то у ячейки 99 д�
 test('Если размер поля boardSize = 10, то у ячейки 90 должна быть строка bottom-left', () => {
   const result = calcTileType(90, 10);
   expect(result).toEqual('bottom-left');
+});
+
+test('Если уровень жизни 10, то он критичный', () => {
+  const result = calcHealthLevel(10);
+  expect(result).toEqual('critical');
+});
+test('Если уровень жизни 45, то он нормальный', () => {
+  const result = calcHealthLevel(45);
+  expect(result).toEqual('normal');
+});
+test('Если уровень жизни 50, то он высокий', () => {
+  const result = calcHealthLevel(50);
+  expect(result).toEqual('high');
 });
