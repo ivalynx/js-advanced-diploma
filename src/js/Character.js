@@ -20,11 +20,11 @@ export default class Character {
     const defenseBefore = this.defense;
     const life = this.health;
     const attackAfter = Math.max(attackBefore, attackBefore * (1.8 - life) / 100);
-    const defenseAfter = Math.max(defenseBefore, defenseBefore * (1.8 - life) / 100);    
+    const defenseAfter = Math.max(defenseBefore, defenseBefore * (1.8 - life) / 100);
     let lifeAfter = life + 80;
     if (lifeAfter > 100) {
       lifeAfter = 100;
-    };
+    }
     this.attack = attackAfter;
     this.defense = defenseAfter;
     this.health = lifeAfter;
