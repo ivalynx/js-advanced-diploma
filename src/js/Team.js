@@ -1,53 +1,39 @@
 import { generateTeam } from './generators';
-import Swordsman from './characters/Swordsman';
-import Bowman from './characters/Bowman';
-import Magician from './characters/Magician';
-import Undead from './characters/Undead';
-import Vampire from './characters/Vampire';
-import Daemon from './characters/Daemon';
+
 
 export default class Team {
-  constructor() {
-    this.user = {
-      type: 'user',
-      allowedTypes: [Swordsman, Bowman, Magician],
-      members: new Set(),
-    };
-    this.computer = {
-      type: 'computer',
-      allowedTypes: [Undead, Vampire, Daemon],
-      members: new Set(),
-    };
+  constructor(type, allowedTypes) {
+    this.type = type;
+    this.allowedTypes = allowedTypes;
+    this.members = new Set();
   }
 
-  createTeam(player, level) {
-    const characterCount = this.checkCharacterCount(player, level);
-    const allowedTypes = this.checkAllowedTypes(player, level);
+  createTeam(level, userTeam) {    
+    const characterCount = this.checkCharacterCount(level, userTeam);
+    const allowedTypes = this.checkAllowedTypes(level);
     const maxLevel = level;
     const result = generateTeam(allowedTypes, maxLevel, characterCount);
-    console.log(result);
-    player.members.addAll(...result);
-    // player.members.toArray();
+    this.addAll(result);
   }
 
-  checkCharacterCount(player, level) {
-    if (player.type === 'user' && level === 1) {
+  checkCharacterCount(level, userTeam) {
+    if (this.type === 'user' && level === 1) {
       return 2;
-    } if (player.type === 'computer') {
-      return this.user.members.length;
+    } if (this.type === 'computer') {      
+      const array = userTeam.toArray();
+      return array.length + 1;
     }
     throw (new Error('Невозможно создать группу для этого игрока'));
   }
 
-  checkAllowedTypes(player, level) {
+  checkAllowedTypes(level) {
     let end = level + 1;
-    const playerAllowedTypes = player.allowedTypes;
+    const playerAllowedTypes = this.allowedTypes;
     if (level > playerAllowedTypes.length) {
       end = playerAllowedTypes.length;
     }
     return playerAllowedTypes.slice(0, end);
-  }
-  
+  }  
 
   add(member) {
     console.log('add');
@@ -62,7 +48,6 @@ export default class Team {
   }
 
   addAll(...rest) {
-    console.log('addAll');
     rest.forEach((member) => {
       this.members.add(member);
     });
