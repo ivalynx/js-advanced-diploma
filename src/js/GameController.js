@@ -1,11 +1,7 @@
 import themes from './themes';
 import Team from './Team';
-import Swordsman from './characters/Swordsman';
-import Bowman from './characters/Bowman';
-import Magician from './characters/Magician';
-import Undead from './characters/Undead';
-import Vampire from './characters/Vampire';
-import Daemon from './characters/Daemon';
+import commonDataGame from './commonDataGame';
+import checkPossiblePositions from './checkPossiblePositions';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
@@ -29,8 +25,11 @@ export default class GameController {
   }
 
   startNewGame() {
-    const userTeam = new Team('user', [Swordsman, Bowman, Magician]);
-    const computerTeam = new Team('computer', [Undead, Vampire, Daemon]);
+    const possiblePositions = checkPossiblePositions();
+    const userTeam = new Team(commonDataGame.players[0].type, commonDataGame.players[0].allowedTypes);
+    const computerTeam = new Team(commonDataGame.players[1].type, commonDataGame.players[1].allowedTypes);
+    userTeam.possiblePositions = possiblePositions.user;
+    computerTeam.possiblePositions = possiblePositions.computer;
     userTeam.createTeam(this.level);
     computerTeam.createTeam(this.level, userTeam);
     console.log(userTeam);

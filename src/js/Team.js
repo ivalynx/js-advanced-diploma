@@ -1,5 +1,5 @@
 import { generateTeam } from './generators';
-
+import checkPossiblePositions from './checkPossiblePositions';
 
 export default class Team {
   constructor(type, allowedTypes) {
@@ -12,18 +12,20 @@ export default class Team {
     const characterCount = this.checkCharacterCount(level, userTeam);
     const allowedTypes = this.checkAllowedTypes(level);
     const maxLevel = level;
-    const result = generateTeam(allowedTypes, maxLevel, characterCount);
+    const possiblePositions = this.possiblePositions;
+    // console.log(`${this.type} possiblePositions`);
+    // console.log(this.possiblePositions);
+    const result = generateTeam(allowedTypes, maxLevel, characterCount, possiblePositions);
     this.addAll(result);
   }
 
   checkCharacterCount(level, userTeam) {
     if (this.type === 'user' && level === 1) {
       return 2;
-    } if (this.type === 'computer') {      
+    } else if (this.type === 'computer') {      
       const array = userTeam.toArray();
       return array.length + 1;
-    }
-    throw (new Error('Невозможно создать группу для этого игрока'));
+    } else throw (new Error('Невозможно создать группу для этого игрока'));
   }
 
   checkAllowedTypes(level) {
@@ -56,4 +58,5 @@ export default class Team {
   toArray() {
     return Array.from(this.members);
   }
+
 }

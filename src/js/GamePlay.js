@@ -1,8 +1,9 @@
 import { calcHealthLevel, calcTileType } from './utils';
+import commonDataGame from './commonDataGame';
 
 export default class GamePlay {
   constructor() {
-    this.boardSize = 8;
+    this.boardSize = commonDataGame.boardSize;
     this.container = null;
     this.boardEl = null;
     this.cells = [];
