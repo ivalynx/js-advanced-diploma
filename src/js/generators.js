@@ -27,9 +27,7 @@ export function generateTeam(allowedTypes, maxLevel, characterCount, possiblePos
 }
 
 function generatorPosition(possiblePositions, charactersPosition) {
-  console.log(possiblePositions);
-  console.log(charactersPosition);
-  let position = possiblePositions[Math.floor(Math.random())];
+  let position = possiblePositions[Math.floor(Math.random() * possiblePositions.length)];
   if(charactersPosition.includes(position)) {
     generatorPosition(possiblePositions, charactersPosition);
   };
