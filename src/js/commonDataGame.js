@@ -6,16 +6,14 @@ import Vampire from './characters/Vampire';
 import Daemon from './characters/Daemon';
 
 const commonDataGame = {
-  players: [
-    {
+  firstPlayer: {
       type: 'user', 
       allowedTypes: [Swordsman, Bowman, Magician],
     },
-    {
+  secondPlayer: {
       type: 'computer', 
       allowedTypes: [Undead, Vampire, Daemon],
-    }
-  ],
+    },
   boardSize: 8,
 };
 

@@ -7,7 +7,8 @@ export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
     this.stateService = stateService;
-    this.level = 0;
+    this.level = 0;    
+    this.possiblePositions = checkPossiblePositions();
   }
 
   init() {
@@ -25,11 +26,10 @@ export default class GameController {
   }
 
   startNewGame() {
-    const possiblePositions = checkPossiblePositions();
-    const userTeam = new Team(commonDataGame.players[0].type, commonDataGame.players[0].allowedTypes);
-    const computerTeam = new Team(commonDataGame.players[1].type, commonDataGame.players[1].allowedTypes);
-    userTeam.possiblePositions = possiblePositions.user;
-    computerTeam.possiblePositions = possiblePositions.computer;
+    const userTeam = new Team(commonDataGame.firstPlayer.type, commonDataGame.firstPlayer.allowedTypes);
+    const computerTeam = new Team(commonDataGame.secondPlayer.type, commonDataGame.secondPlayer.allowedTypes);
+    userTeam.possiblePositions = this.possiblePositions.firstPlayer;
+    computerTeam.possiblePositions = this.possiblePositions.secondPlayer;
     userTeam.createTeam(this.level);
     computerTeam.createTeam(this.level, userTeam);
     console.log(userTeam);
