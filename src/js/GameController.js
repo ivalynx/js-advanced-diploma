@@ -2,6 +2,7 @@ import themes from './themes';
 import Team from './Team';
 import commonDataGame from './commonDataGame';
 import checkPossiblePositions from './checkPossiblePositions';
+import PositionedCharacter from './PositionedCharacter';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
@@ -32,8 +33,25 @@ export default class GameController {
     computerTeam.possiblePositions = this.possiblePositions.secondPlayer;
     userTeam.createTeam(this.level);
     computerTeam.createTeam(this.level, userTeam);
-    console.log(userTeam);
-    console.log(computerTeam);
+    this.placeFiguresOnTheBoard(userTeam, computerTeam);
+  }
+  placeFiguresOnTheBoard(userTeam, computerTeam){
+    const userTeamCharacters = userTeam.toArray();
+    const computerTeamCharacters = computerTeam.toArray();
+    const positions = [];
+    for(let i = 0; i <= userTeamCharacters.length; i += 1){
+      const character = userTeamCharacters[0][i];
+      const position = userTeamCharacters[0][i].position;
+      positions.push( new PositionedCharacter(character, position) )
+    };
+    for(let i = 0; i <= computerTeamCharacters.length; i += 1){
+      const character = computerTeamCharacters[0][i];
+      const position = computerTeamCharacters[0][i].position;
+      positions.push( new PositionedCharacter(character, position) )
+    };
+    console.log(`positions`);
+    console.log(positions);
+    this.gamePlay.redrawPositions(positions);
   }
 
   onCellClick(index) {
