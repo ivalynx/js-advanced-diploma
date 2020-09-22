@@ -35,16 +35,17 @@ export default class GameController {
     computerTeam.createTeam(this.level, userTeam);
     this.placeFiguresOnTheBoard(userTeam, computerTeam);
   }
+  
   placeFiguresOnTheBoard(userTeam, computerTeam){
     const userTeamCharacters = userTeam.toArray();
     const computerTeamCharacters = computerTeam.toArray();
     const positions = [];
-    for(let i = 0; i <= userTeamCharacters.length; i += 1){
+    for(let i = 0; i < userTeamCharacters[0].length; i += 1){
       const character = userTeamCharacters[0][i];
       const position = userTeamCharacters[0][i].position;
       positions.push( new PositionedCharacter(character, position) )
     };
-    for(let i = 0; i <= computerTeamCharacters.length; i += 1){
+    for(let i = 0; i < computerTeamCharacters[0].length; i += 1){
       const character = computerTeamCharacters[0][i];
       const position = computerTeamCharacters[0][i].position;
       positions.push( new PositionedCharacter(character, position) )
