@@ -15,11 +15,12 @@ export default class GameController {
   init() {
     const { storage } = this.stateService;
     if (storage.length === 1) {
-      this.level = 1;
       console.log('Давайте поиграем');
+      this.level = 1;
     } else {
     // TODO: load saved stated from stateService
       console.log('Посмотрим, что у вас тут было');
+      this.level = 1;
     }
     this.gamePlay.drawUi(themes[this.level - 1]);
     this.startNewGame();
