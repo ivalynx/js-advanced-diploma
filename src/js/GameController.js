@@ -21,8 +21,8 @@ export default class GameController {
     // TODO: load saved stated from stateService
       console.log('Посмотрим, что у вас тут было');
     }
-    this.startNewGame();
     this.gamePlay.drawUi(themes[this.level - 1]);
+    this.startNewGame();
     // TODO: add event listeners to gamePlay events
   }
 
@@ -33,6 +33,7 @@ export default class GameController {
     const computerTeam = new Team(secondPlayer.type, secondPlayer.allowedTypes);
     userTeam.possiblePositions = this.possiblePositions.firstPlayer;
     computerTeam.possiblePositions = this.possiblePositions.secondPlayer;
+
     userTeam.createTeam(this.level);
     computerTeam.createTeam(this.level, userTeam);
     this.placeFiguresOnTheBoard(userTeam, computerTeam);
