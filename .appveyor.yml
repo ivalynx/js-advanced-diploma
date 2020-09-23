@@ -23,6 +23,6 @@ build_script:
   - npm run build   # команда сборки
 
 # to run your custom scripts instead of automatic tests
-# test_script:
-#  - npm run lint && npm test
+ test_script:
+  - npm run lint && npm test
 
