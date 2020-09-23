@@ -8,7 +8,7 @@ export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
     this.stateService = stateService;
-    this.level = 0;    
+    this.level = 0;
     this.possiblePositions = checkPossiblePositions();
   }
 
@@ -27,43 +27,43 @@ export default class GameController {
   }
 
   startNewGame() {
-    const userTeam = new Team(commonDataGame.firstPlayer.type, commonDataGame.firstPlayer.allowedTypes);
-    const computerTeam = new Team(commonDataGame.secondPlayer.type, commonDataGame.secondPlayer.allowedTypes);
+    const { firstPlayer } = commonDataGame;
+    const { secondPlayer } = commonDataGame;
+    const userTeam = new Team(firstPlayer.type, firstPlayer.allowedTypes);
+    const computerTeam = new Team(secondPlayer.type, secondPlayer.allowedTypes);
     userTeam.possiblePositions = this.possiblePositions.firstPlayer;
     computerTeam.possiblePositions = this.possiblePositions.secondPlayer;
     userTeam.createTeam(this.level);
     computerTeam.createTeam(this.level, userTeam);
     this.placeFiguresOnTheBoard(userTeam, computerTeam);
   }
-  
-  placeFiguresOnTheBoard(userTeam, computerTeam){
+
+  placeFiguresOnTheBoard(userTeam, computerTeam) {
     const userTeamCharacters = userTeam.toArray();
     const computerTeamCharacters = computerTeam.toArray();
     const positions = [];
-    for(let i = 0; i < userTeamCharacters[0].length; i += 1){
+    for (let i = 0; i < userTeamCharacters[0].length; i += 1) {
       const character = userTeamCharacters[0][i];
-      const position = userTeamCharacters[0][i].position;
-      positions.push( new PositionedCharacter(character, position) )
-    };
-    for(let i = 0; i < computerTeamCharacters[0].length; i += 1){
+      const { position } = userTeamCharacters[0][i];
+      positions.push(new PositionedCharacter(character, position));
+    }
+    for (let i = 0; i < computerTeamCharacters[0].length; i += 1) {
       const character = computerTeamCharacters[0][i];
-      const position = computerTeamCharacters[0][i].position;
-      positions.push( new PositionedCharacter(character, position) )
-    };
-    console.log(`positions`);
-    console.log(positions);
+      const { position } = computerTeamCharacters[0][i];
+      positions.push(new PositionedCharacter(character, position));
+    }
     this.gamePlay.redrawPositions(positions);
   }
 
-  onCellClick(index) {
-    // TODO: react to click
-  }
+  // onCellClick(index) {
+  //   // TODO: react to click
+  // }
 
-  onCellEnter(index) {
-    // TODO: react to mouse enter
-  }
+  // onCellEnter(index) {
+  //   // TODO: react to mouse enter
+  // }
 
-  onCellLeave(index) {
-    // TODO: react to mouse leave
-  }
+  // onCellLeave(index) {
+  //   // TODO: react to mouse leave
+  // }
 }

@@ -1,7 +1,7 @@
 import Character from '../Character';
-import magicalDamageDealer from '../characters/magicalDamageDealer';
-import meleeDamageDealer from '../characters/meleeDamageDealer';
-import rangeDamageDealer from '../characters/rangeDamageDealer';
+import MagicalDamageDealer from '../characters/magicalDamageDealer';
+import MeleeDamageDealer from '../characters/meleeDamageDealer';
+import RangeDamageDealer from '../characters/rangeDamageDealer';
 import Bowman from '../characters/Bowman';
 import Swordsman from '../characters/Swordsman';
 import Magician from '../characters/Magician';
@@ -17,25 +17,25 @@ test('Если вызываем new Character, должно выбрасыват
   expect(result).toThrow('Нельзя создавать персонажа таким образом');
 });
 
-test('Если вызываем new magicalDamageDealer, должно выбрасывать ошибку', () => {
+test('Если вызываем new MagicalDamageDealer, должно выбрасывать ошибку', () => {
   function result() {
-    const char = new magicalDamageDealer(1);
+    const char = new MagicalDamageDealer(1);
     return char;
   }
   expect(result).toThrow('И так тоже нельзя создавать персонажа');
 });
 
-test('Если вызываем new meleeDamageDealer, должно выбрасывать ошибку', () => {
+test('Если вызываем new MeleeDamageDealer, должно выбрасывать ошибку', () => {
   function result() {
-    const char = new meleeDamageDealer(1);
+    const char = new MeleeDamageDealer(1);
     return char;
   }
   expect(result).toThrow('И так тоже нельзя создавать персонажа');
 });
 
-test('Если вызываем new rangeDamageDealer, должно выбрасывать ошибку', () => {
+test('Если вызываем new RangeDamageDealer, должно выбрасывать ошибку', () => {
   function result() {
-    const char = new rangeDamageDealer(1);
+    const char = new RangeDamageDealer(1);
     return char;
   }
   expect(result).toThrow('И так тоже нельзя создавать персонажа');

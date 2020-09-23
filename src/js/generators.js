@@ -14,9 +14,17 @@ export function* characterGenerator(allowedTypes, maxLevel) {
   }
 }
 
+function generatorPosition(possiblePositions, charactersPosition) {
+  const position = possiblePositions[Math.floor(Math.random() * possiblePositions.length)];
+  if (charactersPosition.includes(position)) {
+    generatorPosition(possiblePositions, charactersPosition);
+  }
+  return position;
+}
+
 export function generateTeam(allowedTypes, maxLevel, characterCount, possiblePositions) {
   const team = [];
-  const charactersPosition = []
+  const charactersPosition = [];
   for (let i = 0; i < characterCount; i += 1) {
     const character = characterGenerator(allowedTypes, maxLevel).next().value;
     character.position = generatorPosition(possiblePositions, charactersPosition);
@@ -25,11 +33,3 @@ export function generateTeam(allowedTypes, maxLevel, characterCount, possiblePos
   }
   return team;
 }
-
-function generatorPosition(possiblePositions, charactersPosition) {
-  let position = possiblePositions[Math.floor(Math.random() * possiblePositions.length)];
-  if(charactersPosition.includes(position)) {
-    generatorPosition(possiblePositions, charactersPosition);
-  };
-  return position;
-};

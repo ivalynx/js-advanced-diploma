@@ -1,4 +1,5 @@
-import { calcHealthLevel, calcTileType } from './utils';
+// import { calcHealthLevel, calcTileType } from './utils';
+import { calcTileType } from './utils';
 import commonDataGame from './commonDataGame';
 
 export default class GamePlay {
@@ -60,7 +61,6 @@ export default class GamePlay {
       cellEl.addEventListener('click', (event) => this.onCellClick(event));
       this.boardEl.appendChild(cellEl);
     }
-
     this.cells = Array.from(this.boardEl.children);
   }
 
@@ -70,26 +70,31 @@ export default class GamePlay {
    * @param positions array of PositionedCharacter objects
    */
   redrawPositions(positions) {
-    for (const cell of this.cells) {
-      cell.innerHTML = '';
-    }
+    console.log(this.cells);
+    console.log(positions);
+    // for (const cell of this.cells) {
+    //   cell.innerHTML = '';
+    // }
 
-    for (const position of positions) {
-      const cellEl = this.boardEl.children[position.position];
-      const charEl = document.createElement('div');
-      charEl.classList.add('character', position.character.type);
+    // for (const position of positions) {
+    //   const cellEl = this.boardEl.children[position.position];
+    //   const charEl = document.createElement('div');
+    //   const char = position.character;
+    //   const charHealtLevel = calcHealthLevel(char.health);
+    //   const strHealthLvl = 'health-level-indicator'
+    //   charEl.classList.add('character', char.type);
 
-      const healthEl = document.createElement('div');
-      healthEl.classList.add('health-level');
+    //   const healthEl = document.createElement('div');
+    //   healthEl.classList.add('health-level');
 
-      const healthIndicatorEl = document.createElement('div');
-      healthIndicatorEl.classList.add('health-level-indicator', `health-level-indicator-${calcHealthLevel(position.character.health)}`);
-      healthIndicatorEl.style.width = `${position.character.health}%`;
-      healthEl.appendChild(healthIndicatorEl);
+    //   const healthIndicatorEl = document.createElement('div');
+    //   healthIndicatorEl.classList.add(strHealthLvl, `${strHealthLvl}-${charHealtLevel}`);
+    //   healthIndicatorEl.style.width = `${char.health}%`;
+    //   healthEl.appendChild(healthIndicatorEl);
 
-      charEl.appendChild(healthEl);
-      cellEl.appendChild(charEl);
-    }
+    //   charEl.appendChild(healthEl);
+    //   cellEl.appendChild(charEl);
+    // }
   }
 
   /**

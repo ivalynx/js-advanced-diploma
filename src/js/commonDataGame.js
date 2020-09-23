@@ -7,13 +7,13 @@ import Daemon from './characters/Daemon';
 
 const commonDataGame = {
   firstPlayer: {
-      type: 'user', 
-      allowedTypes: [Swordsman, Bowman, Magician],
-    },
+    type: 'user',
+    allowedTypes: [Swordsman, Bowman, Magician],
+  },
   secondPlayer: {
-      type: 'computer', 
-      allowedTypes: [Undead, Vampire, Daemon],
-    },
+    type: 'computer',
+    allowedTypes: [Undead, Vampire, Daemon],
+  },
   boardSize: 8,
 };
 

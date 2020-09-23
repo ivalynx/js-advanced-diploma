@@ -1,11 +1,11 @@
 import Character from '../Character';
 
-export default class magicalDamageDealer extends Character {
+export default class MagicalDamageDealer extends Character {
   constructor(level, type = 'magical') {
     super(level, type);
     this.attack = 10;
     this.defence = 40;
-    if (new.target.name === 'magicalDamageDealer') {
+    if (new.target.name === 'MagicalDamageDealer') {
       throw (new Error('И так тоже нельзя создавать персонажа'));
     }
   }

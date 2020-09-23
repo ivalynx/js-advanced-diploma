@@ -3,10 +3,10 @@ import commonDataGame from './commonDataGame';
 export default function checkPossiblePositions() {
   const firstPossiblePositions = [];
   const secondPossiblePositions = [];
-  const boardSize = commonDataGame.boardSize;
+  const { boardSize } = commonDataGame;
   const board = boardSize * boardSize;
-  for(let i = 0; i < board; i += 1) {
-    if( i % boardSize === 0 ){
+  for (let i = 0; i < board; i += 1) {
+    if (i % boardSize === 0) {
       firstPossiblePositions.push(i);
       firstPossiblePositions.push(i + 1);
       secondPossiblePositions.push(i - 2);
@@ -15,7 +15,7 @@ export default function checkPossiblePositions() {
   }
   const possiblePositions = {
     firstPlayer: firstPossiblePositions,
-    secondPlayer: secondPossiblePositions.filter(i => i > 0),
-  }
+    secondPlayer: secondPossiblePositions.filter((i) => i > 0),
+  };
   return possiblePositions;
 }

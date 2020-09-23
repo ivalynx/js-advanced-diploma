@@ -1,5 +1,5 @@
 import { generateTeam } from './generators';
-import checkPossiblePositions from './checkPossiblePositions';
+import Character from './Character';
 
 export default class Team {
   constructor(type, allowedTypes) {
@@ -8,11 +8,11 @@ export default class Team {
     this.members = new Set();
   }
 
-  createTeam(level, userTeam) {    
+  createTeam(level, userTeam) {
     const characterCount = this.checkCharacterCount(level, userTeam);
     const allowedTypes = this.checkAllowedTypes(level);
     const maxLevel = level;
-    const possiblePositions = this.possiblePositions;
+    const { possiblePositions } = this;
     // console.log(`${this.type} possiblePositions`);
     // console.log(this.possiblePositions);
     const result = generateTeam(allowedTypes, maxLevel, characterCount, possiblePositions);
@@ -22,10 +22,10 @@ export default class Team {
   checkCharacterCount(level, userTeam) {
     if (this.type === 'user' && level === 1) {
       return 2;
-    } else if (this.type === 'computer') {      
+    } if (this.type === 'computer') {
       const array = userTeam.toArray();
       return array.length + 1;
-    } else throw (new Error('Невозможно создать группу для этого игрока'));
+    } throw (new Error('Невозможно создать группу для этого игрока'));
   }
 
   checkAllowedTypes(level) {
@@ -35,10 +35,9 @@ export default class Team {
       end = playerAllowedTypes.length;
     }
     return playerAllowedTypes.slice(0, end);
-  }  
+  }
 
   add(member) {
-    console.log('add');
     if (member instanceof Character) {
       if (this.members.has(member)) {
         throw (new Error('Нельзя добавить персонажа, который уже есть в команде'));
@@ -58,5 +57,4 @@ export default class Team {
   toArray() {
     return Array.from(this.members);
   }
-
 }
