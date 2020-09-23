@@ -17,11 +17,11 @@ export default class GameController {
     if (storage.length === 1) {
       this.level = 1;
       console.log('Давайте поиграем');
-      this.startNewGame();
     } else {
     // TODO: load saved stated from stateService
       console.log('Посмотрим, что у вас тут было');
     }
+    this.startNewGame();
     this.gamePlay.drawUi(themes[this.level - 1]);
     // TODO: add event listeners to gamePlay events
   }
